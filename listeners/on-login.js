@@ -1,9 +1,5 @@
 /*
- * @Author: Peanut
  * @Description:  登录
- * @Date: 2020-05-20 23:21:06
- * @Last Modified by: Peanut
- * @Last Modified time: 2021-04-19 22:07:28
  */
 const schedule = require("../schedule");
 const config = require("../config");
@@ -28,13 +24,13 @@ async function onRoom(bot) {
     const room = await bot.Room.find({
       topic: config.WEBROOM
     });
-    let today = await untils.formatDate(new Date()); //获取今天的日期
-    let one = await superagent.getOne(); //获取每日一句
-    const englishData = await superagent.getEnglishOne(); //英语一句话
-    let english = `en：${englishData.en}\nzh：${englishData.zh}`;
-    let poison = await superagent.getPoison(); //毒鸡汤
-    const str = `${today}\n元气满满的一天开始啦,要加油噢^_^\n\n每日一句：\n${one}\n\n英语一句话：\n${english}\n\n毒鸡汤：\n${poison}`;
-    await room.say(str);
+    // let today = await untils.formatDate(new Date()); //获取今天的日期
+    // let one = await superagent.getOne(); //获取每日一句
+    // const englishData = await superagent.getEnglishOne(); //英语一句话
+    // let english = `en：${englishData.en}\nzh：${englishData.zh}`;
+    // let poison = await superagent.getPoison(); //毒鸡汤
+    // const str = `${today}\n元气满满的一天开始啦,要加油噢^_^\n\n每日一句：\n${one}\n\n英语一句话：\n${english}\n\n毒鸡汤：\n${poison}`;
+    await room.say("9999999999999999999点了 定时任务 ？触发？");
   });
 }
 module.exports = onLogin;
