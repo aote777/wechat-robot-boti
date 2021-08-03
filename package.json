@@ -2,16 +2,10 @@
   "name": "wechat-robot",
   "version": "1.0.0",
   "description": "一款nodejs版微信机器人，群聊小助手",
-  "author": "Peanut <htmlcs@163.com>",
+  "author": "aote777",
   "license": "MIT",
   "keywords": [
-    "微信机器人",
-    "微信小助手",
-    "微信群聊机器人",
-    "微信小秘书",
-    "微信每日说",
-    "wechaty",
-    "微信助手"
+    "微信机器人"
   ],
   "main": "app.js",
   "engines": {
@@ -35,10 +29,5 @@
     "@chatie/git-scripts": "^0.2.5",
     "@chatie/tsconfig": "^0.6.1",
     "check-node-version": "^3.2.0"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "npx git-scripts-pre-push"
-    }
   }
 }

@@ -1,9 +1,5 @@
 /*
- * @Author: Peanut
  * @Description:  实例化 - 入口文件
- * @Date: 2020-05-19 21:55:04
- * @Last Modified by: Peanut
- * @Last Modified time: 2021-04-19 22:09:09
  */
 const { Wechaty } = require("wechaty");
 const name = "wechat-puppet-wechat";

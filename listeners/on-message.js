@@ -28,7 +28,7 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
  * 处理消息
  */
 async function onMessage(msg, bot) {
-  //防止自己和自己对话  解除跟自己对话
+  //防止自己和自己对话  调试阶段=>解除跟自己对话
   // if (msg.self()) return;
   const room = msg.room(); // 是否是群消息
   if (room) {
@@ -54,28 +54,28 @@ async function onPeopleMessage(msg, bot) {
   if (config.IGNORE.includes(contact.payload.name)) return;
   let content = msg.text().trim(); // 消息内容 使用trim()去除前后空格
 
-  if (content === "菜单") {
-    await delay(200);
-    await msg.say(allKeywords);
-  }  else if (content === "毒鸡汤" || parseInt(content) === 2) {
-    let soup = await superagent.getSoup();
-    await delay(200);
-    await msg.say(soup);
-  } else if (content === "神回复" || parseInt(content) === 3) {
-    const { title, content } = await superagent.getGodReply();
-    await delay(200);
-    await msg.say(`标题：${title}<br><br>神回复：${content}`);
-  } else if (content === "英语一句话" || parseInt(content) === 4) {
-    const { en, zh } = await superagent.getEnglishOne();
-    await delay(200);
-    await msg.say(`en：${en}<br><br>zh：${zh}`);
-  } else {
-    const noUtils = await onUtilsMessage(msg, bot);
-    if (noUtils) {
-      await delay(200);
-      await msg.say(allKeywords);
-    }
-  }
+  // if (content === "菜单") {
+  //   await delay(200);
+  //   await msg.say(allKeywords);
+  // }  else if (content === "毒鸡汤" || parseInt(content) === 2) {
+  //   let soup = await superagent.getSoup();
+  //   await delay(200);
+  //   await msg.say(soup);
+  // } else if (content === "神回复" || parseInt(content) === 3) {
+  //   const { title, content } = await superagent.getGodReply();
+  //   await delay(200);
+  //   await msg.say(`标题：${title}<br><br>神回复：${content}`);
+  // } else if (content === "英语一句话" || parseInt(content) === 4) {
+  //   const { en, zh } = await superagent.getEnglishOne();
+  //   await delay(200);
+  //   await msg.say(`en：${en}<br><br>zh：${zh}`);
+  // } else {
+  //   const noUtils = await onUtilsMessage(msg, bot);
+  //   if (noUtils) {
+  //     await delay(200);
+  //     await msg.say(allKeywords);
+  //   }
+  // }
 }
 /**
  * 处理群消息
@@ -86,7 +86,9 @@ async function onWebRoomMessage(msg, bot) {
   // 测试群id '@@b14f9422554701931d02dba2b44aff6c6960fd7b7dc4a4fa195dc27bd6bb5288'
   // 同学群id '@@ba0a0cea7ed88d4ec9f1dc17f3265e2776a5770d7f3fc0a062a2da64a0c532f0'
   let idArr=[
+    //测试群
     '@@b14f9422554701931d02dba2b44aff6c6960fd7b7dc4a4fa195dc27bd6bb5288',
+    //同学群
     '@@ba0a0cea7ed88d4ec9f1dc17f3265e2776a5770d7f3fc0a062a2da64a0c532f0',
   ]
   let allowBool=false
@@ -109,6 +111,7 @@ async function onWebRoomMessage(msg, bot) {
       await delay(200);
       await msg.say(`？？successsssss?`);
     } else {
+      console.log('没有通过判断-----')
       await onUtilsMessage(msg, bot);
     }
   }
