@@ -2,7 +2,6 @@
 ### 目录结构
 
 - `config`存放公共配置以及`superagent`请求相关配置
-- `imgs`存放相关图片
 - `listeners`存放机器人初始化后一系列 callback
   - `on-friendship.js` 处理好友请求
   - `on-login.js` 处理登录

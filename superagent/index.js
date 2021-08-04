@@ -5,6 +5,11 @@ const ONE = "http://wufazhuce.com/"; // ONE的web版网站
 const POISON = "https://8zt.cc/"; //毒鸡汤网站
 const TXHOST = "https://api.tianapi.com/txapi/"; // 天行host 官网：tianapi.com
 const APIKEY = ""; // 天行key，请先去网站注册填写key  注册免费  注册后申请下面的接口即可。
+/*-----------------------------------*\ 
+天行api 官网https://www.tianapi.com/
+账号：17604626404
+密码：517182343lsc
+\*-----------------------------------*/
 /**
  * 获取每日一句
  */
