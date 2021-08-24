@@ -50,7 +50,7 @@ async function getTianDog() {
 /**
  * 获取朋友圈文案
  */
- async function getpyq() {
+async function getpyq() {
   const url = TXHOST + 'pyqwenan/index'
   try {
     let res = await superagent.req(url, 'GET', {
@@ -71,7 +71,7 @@ async function getTianDog() {
 /**
  * 获取分手文案
  */
- async function getFenShou() {
+async function getFenShou() {
   const url = TXHOST + 'hsjz/index'
   try {
     let res = await superagent.req(url, 'GET', {
@@ -105,11 +105,28 @@ async function getNews() {
     console.log('获取接口失败', err)
   }
 }
-
+//网易云热评
+async function getEmo() {
+  const url = 'http://api.tianapi.com/txapi/hotreview/index'
+  try {
+    let res = await superagent.req(url, 'GET', {
+      key: APIKEY,
+    })
+    let content = JSON.parse(res.text)
+    if (content.code === 200) {
+      return JSON.stringify(content.newslist)
+    } else {
+      console.log('获取接口失败', content.msg)
+    }
+  } catch (err) {
+    console.log('获取接口失败', err)
+  }
+}
 module.exports = {
   getSoup,
   getTianDog,
   getpyq,
   getFenShou,
-  getNews
+  getNews,
+  getEmo
 }

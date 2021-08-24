@@ -49,7 +49,7 @@ async function onPeopleMessage(msg, bot) {
 async function onWebRoomMessage(msg, bot) {
   // 判断群聊
   const isText = msg.type() === bot.Message.Type.Text
-  
+
   let idArr = config.ROOMIDARR
   let allowBool = false
   for (let i = 0; i < idArr.length; i++) {
@@ -72,6 +72,7 @@ async function onWebRoomMessage(msg, bot) {
       舔狗（一天100次调用）
       朋友圈文案
       毒鸡汤
+      李铁是我儿
       分手文案
       `)
     } else if (content === '群消息过滤') {
@@ -80,35 +81,39 @@ async function onWebRoomMessage(msg, bot) {
     } else if (content === '热更新测试') {
       await delay(200)
       await msg.say(`success`)
-    }else if (content === '舔狗') {
+    } else if (content === '舔狗') {
       let res = await superagent.getTianDog()
       await delay(200)
       await msg.say(res)
-    }else if (content === '朋友圈文案') {
+    } else if (content === '朋友圈文案') {
       let res = await superagent.getpyq()
       await delay(200)
       await msg.say(res)
-    }else if (content === 'github') {
+    } else if (content === 'github') {
       await delay(200)
       await msg.say(`
       机器人地址
       https://github.com/aote777/wechat-robot-master
       `)
-    }else if (content === '分手文案') {
+    } else if (content === '分手文案') {
       let res = await superagent.getFenShou()
       await delay(200)
       await msg.say(res)
-    }else if (content === '每日简报') {
+    } else if (content === '每日简报') {
       let res = await superagent.getNews()
-      let str=''
-      
-      let newarr=JSON.parse(res)
-      console.log('---',typeof newarr)
-      for(let i=0;i<newarr.length;i++){
-        str+=newarr[i].title+'<br>'+`        `+newarr[i].digest+'<br><br>'
+      let str = ''
+
+      let newarr = JSON.parse(res)
+      console.log('---', typeof newarr)
+      for (let i = 0; i < newarr.length; i++) {
+        str += newarr[i].title + '<br>' + `        ` + newarr[i].digest + '<br><br>'
       }
       await delay(200)
       await msg.say(str)
+    } else if (content === '我emo了') {
+      let res = await superagent.getEmo()
+      await delay(200)
+      await msg.say(res)
     }
   }
 }
