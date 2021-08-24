@@ -6,8 +6,10 @@ const config = require('../config')
 const untils = require('../utils')
 const superagent = require('../superagent')
 let roomarr=config.ROOM
+let bot = config.bot
 
-async function onLogin(user, bot) {
+
+async function onLogin(user) {
   console.log(`机器人${user}登录了`)
   roomarr.forEach(async (roomname,index)=>{
     const room = await bot.Room.find({
@@ -35,4 +37,5 @@ async function onRoom(bot) {
     await room.say('定时任务-测试 整点-')
   })
 }
+console.log('onLogin')
 module.exports = onLogin

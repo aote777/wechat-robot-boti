@@ -5,7 +5,7 @@ const path = require('path')
 const { FileBox } = require('file-box')
 const superagent = require('../superagent')
 const config = require('../config')
-const { colorRGBtoHex, colorHex } = require('../utils')
+let bot = config.bot
 
 const allKeywords = `allKeywords`
 /**
@@ -16,7 +16,7 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 /**
  * 处理消息
  */
-async function onMessage(msg, bot) {
+async function onMessage(msg) {
   //防止自己和自己对话  调试阶段=>解除跟自己对话
   if (msg.self()) return
   const room = msg.room() // 是否是群消息
@@ -49,7 +49,7 @@ async function onPeopleMessage(msg, bot) {
 async function onWebRoomMessage(msg, bot) {
   // 判断群聊
   const isText = msg.type() === bot.Message.Type.Text
-
+  
   let idArr = config.ROOMIDARR
   let allowBool = false
   for (let i = 0; i < idArr.length; i++) {
@@ -66,7 +66,7 @@ async function onWebRoomMessage(msg, bot) {
     } else if (content == '机器人命令') {
       await delay(200)
       await msg.say(`
-      命令提示-全字匹配
+      命令提示-全字匹配-
       github
       群消息过滤
       舔狗（一天100次调用）
@@ -77,7 +77,10 @@ async function onWebRoomMessage(msg, bot) {
     } else if (content === '群消息过滤') {
       await delay(200)
       await msg.say(`-本消息只会在已绑定的群发送-`)
-    } else if (content === '舔狗') {
+    } else if (content === '热更新测试') {
+      await delay(200)
+      await msg.say(`success`)
+    }else if (content === '舔狗') {
       let res = await superagent.getTianDog()
       await delay(200)
       await msg.say(res)
@@ -98,5 +101,5 @@ async function onWebRoomMessage(msg, bot) {
     }
   }
 }
-
+console.log('onMessage')
 module.exports = onMessage

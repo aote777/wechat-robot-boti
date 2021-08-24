@@ -6,4 +6,5 @@ module.exports = {
   ROOM: ['学习交流群'], //要管理的群名称
   MYSELF: 'Boti', //机器人昵称
   ROOMIDARR: ['$占位$'], //将要管理的群聊id
+  bot:{} //bot实例
 }
