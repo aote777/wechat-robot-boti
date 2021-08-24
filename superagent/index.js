@@ -12,7 +12,7 @@ const APIKEY = '47263bc109765510b6d2b003a6c5da0a' // 天行key，请先去网站
 \*-----------------------------------*/
 
 /**
- * 获取每日毒鸡汤
+ * 获取毒鸡汤
  */
 async function getSoup() {
   try {
@@ -45,7 +45,52 @@ async function getTianDog() {
     console.log('获取接口失败', err)
   }
 }
+
+// pyqwenan/index
+/**
+ * 获取朋友圈文案
+ */
+ async function getpyq() {
+  const url = TXHOST + 'pyqwenan/index'
+  try {
+    let res = await superagent.req(url, 'GET', {
+      key: APIKEY,
+    })
+    let content = JSON.parse(res.text)
+    if (content.code === 200) {
+      return content.newslist[0].content
+    } else {
+      console.log('获取接口失败', content.msg)
+    }
+  } catch (err) {
+    console.log('获取接口失败', err)
+  }
+}
+
+
+/**
+ * 获取分手文案
+ */
+ async function getFenShou() {
+  const url = TXHOST + 'hsjz/index'
+  try {
+    let res = await superagent.req(url, 'GET', {
+      key: APIKEY,
+    })
+    let content = JSON.parse(res.text)
+    if (content.code === 200) {
+      return content.newslist[0].content
+    } else {
+      console.log('获取接口失败', content.msg)
+    }
+  } catch (err) {
+    console.log('获取接口失败', err)
+  }
+}
+
 module.exports = {
   getSoup,
   getTianDog,
+  getpyq,
+  getFenShou
 }

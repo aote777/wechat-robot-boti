@@ -67,14 +67,32 @@ async function onWebRoomMessage(msg, bot) {
       await delay(200)
       await msg.say(`
       命令提示-全字匹配
+      github
       群消息过滤
       舔狗（一天100次调用）
+      朋友圈文案
+      毒鸡汤
+      分手文案
       `)
     } else if (content === '群消息过滤') {
       await delay(200)
       await msg.say(`-本消息只会在已绑定的群发送-`)
     } else if (content === '舔狗') {
       let res = await superagent.getTianDog()
+      await delay(200)
+      await msg.say(res)
+    }else if (content === '朋友圈文案') {
+      let res = await superagent.getpyq()
+      await delay(200)
+      await msg.say(res)
+    }else if (content === 'github') {
+      await delay(200)
+      await msg.say(`
+      机器人地址
+      https://github.com/aote777/wechat-robot-master
+      `)
+    }else if (content === '分手文案') {
+      let res = await superagent.getFenShou()
       await delay(200)
       await msg.say(res)
     }

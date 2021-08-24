@@ -30,9 +30,9 @@ async function onRoom(bot) {
   const time = '0 0 * * * *'
   schedule.setSchedule(time, async () => {
     const room = await bot.Room.find({
-      topic: config.WEBROOM,
+      topic: config.ROOM[0],
     })
-    await room.say('定时任务-test- >key=机器人指令')
+    await room.say('定时任务-测试 整点-')
   })
 }
 module.exports = onLogin
