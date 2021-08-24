@@ -25,16 +25,18 @@ async function onLogin(user) {
   await onRoom(bot)
 }
 /**
- * 9点定时给指定群发送消息
+ * 8点定时给指定群发送消息
  */
 async function onRoom(bot) {
   //匹配规则可参考 schedule/index.js
-  const time = '0 0 * * * *'
+  const time = '0 0 8 * * *'
   schedule.setSchedule(time, async () => {
     const room = await bot.Room.find({
       topic: config.ROOM[0],
     })
-    await room.say('定时任务-测试 整点-')
+    let res = await superagent.getNews()
+    await room.say('早上好兄弟们')
+    await room.say(res)
   })
 }
 console.log('onLogin')

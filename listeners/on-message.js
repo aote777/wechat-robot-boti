@@ -68,7 +68,7 @@ async function onWebRoomMessage(msg, bot) {
       await msg.say(`
       命令提示-全字匹配-
       github
-      群消息过滤
+      每日简报
       舔狗（一天100次调用）
       朋友圈文案
       毒鸡汤
@@ -98,6 +98,17 @@ async function onWebRoomMessage(msg, bot) {
       let res = await superagent.getFenShou()
       await delay(200)
       await msg.say(res)
+    }else if (content === '每日简报') {
+      let res = await superagent.getNews()
+      let str=''
+      
+      let newarr=JSON.parse(res)
+      console.log('---',typeof newarr)
+      for(let i=0;i<newarr.length;i++){
+        str+=newarr[i].title+'<br>'+`        `+newarr[i].digest+'<br><br>'
+      }
+      await delay(200)
+      await msg.say(str)
     }
   }
 }

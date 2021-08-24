@@ -88,9 +88,28 @@ async function getTianDog() {
   }
 }
 
+//每日简报
+async function getNews() {
+  const url = 'http://api.tianapi.com/bulletin/index'
+  try {
+    let res = await superagent.req(url, 'GET', {
+      key: APIKEY,
+    })
+    let content = JSON.parse(res.text)
+    if (content.code === 200) {
+      return JSON.stringify(content.newslist)
+    } else {
+      console.log('获取接口失败', content.msg)
+    }
+  } catch (err) {
+    console.log('获取接口失败', err)
+  }
+}
+
 module.exports = {
   getSoup,
   getTianDog,
   getpyq,
-  getFenShou
+  getFenShou,
+  getNews
 }

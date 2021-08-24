@@ -1,4 +1,3 @@
-
 ### 目录结构
 
 - `config`存放公共配置以及`superagent`请求相关配置
@@ -24,26 +23,21 @@
 
 依赖中需要安装`chromium`，使用 npm 会下载失败或者很慢，国内嘛你懂得
 
-**强烈推荐** 使用`cnpm`安装依赖 网好用npm也行
+**强烈推荐** 使用`cnpm`安装依赖 网好用 npm 也行
 
 ```bash
 cnpm install  //npm install
 ```
 
-
-
 ### 修改`config`配置
 
 打开`config/index.js` 文件，将里面的配置改为自己的。
-
-
 
 ### 运行测试
 
 ```bash
 cnpm start //npm start
 ```
-
 
 底层 api 基于 [wechaty](https://github.com/wechaty/wechaty)
 
