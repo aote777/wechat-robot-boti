@@ -24,19 +24,13 @@
 
 依赖中需要安装`chromium`，使用 npm 会下载失败或者很慢，国内嘛你懂得
 
-**强烈推荐** 使用`cnpm`安装依赖
+**强烈推荐** 使用`cnpm`安装依赖 网好用npm也行
 
 ```bash
 cnpm install  //npm install
 ```
 
-实在不想用 cnpm 可以将 npm 源切换成淘宝源
 
-```bash
-npm config set registry https://registry.npm.taobao.org
-npm config set disturl https://npm.taobao.org/dist
-npm config set puppeteer_download_host https://npm.taobao.org/mirrors
-```
 
 ### 修改`config`配置
 
