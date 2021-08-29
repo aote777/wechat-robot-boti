@@ -1,6 +1,6 @@
 /**
  * 处理好友关系模块
- * by: Peanut
+ * 没啥鸟用 本机器人没有进行调用-
  */
 const { Friendship } = require('wechaty')
 /**

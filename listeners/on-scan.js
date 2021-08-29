@@ -1,6 +1,6 @@
 /**
  * 获取二维码，登录
- * by: Peanut
+ * 采用引入写好的二维码工具 这个也作废 没什么鸟用
  */
 async function onScan (qrcode, status) {
   require('qrcode-terminal').generate(qrcode, {small: true})

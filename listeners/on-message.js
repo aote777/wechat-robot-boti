@@ -1,15 +1,19 @@
-/*
- * @Description:  处理用户消息
- */
+/*-----------------------------------*\
+|处理接收到的所有消息,转发给所有的
+\*-----------------------------------*/
+
 const path = require('path')
+const { Wechaty } = require('wechaty')
 const { FileBox } = require('file-box')
 const superagent = require('../superagent')
 const config = require('../config')
+const { msghandle } = require('../lib/botfuntionModules')
 let bot = config.bot
 
-const allKeywords = `allKeywords`
+const { botres } = require('../app')
+
 /**
- * sleep
+ * sleep延时防止早泄
  * @param {*} ms
  */
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -17,105 +21,50 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
  * 处理消息
  */
 async function onMessage(msg) {
-  //防止自己和自己对话  调试阶段=>解除跟自己对话
+  //防止机器人自己和自己对话-死循环!important
   if (msg.self()) return
+
+
   const room = msg.room() // 是否是群消息
   if (room) {
     //处理群消息
-    await onWebRoomMessage(msg, bot)
-  }
-  //  else {
-  //   //处理用户消息  用户消息暂时只处理文本消息。后续考虑其他
-  //   console.log("bot.Message", bot.Message);
-  //   const isText = msg.type() === bot.Message.Type.Text;
-  //   if (isText) {
-  //     await onPeopleMessage(msg, bot);
-  //   }
-  // }
-}
-/**
- * 处理用户消息
- */
-async function onPeopleMessage(msg, bot) {
-  //获取发消息人
-  const contact = msg.talker()
-  //对config配置文件中 ignore的用户消息不必处理
-  if (config.IGNORE.includes(contact.payload.name)) return
-  let content = msg.text().trim() // 消息内容 使用trim()去除前后空格
-}
-/**
- * 处理群消息
- */
-async function onWebRoomMessage(msg, bot) {
-  // 判断群聊
-  const isText = msg.type() === bot.Message.Type.Text
 
-  let idArr = config.ROOMIDARR
-  let allowBool = false
-  for (let i = 0; i < idArr.length; i++) {
-    if (msg.payload.roomId == idArr[i]) {
-      allowBool = true
-    }
-  }
-  if (isText && allowBool) {
-    const content = msg.text().trim() // 消息内容
-    if (content == '毒鸡汤') {
-      let poison = await superagent.getSoup()
-      await delay(200)
-      await msg.say(poison)
-    } else if (content == '机器人命令') {
-      await delay(200)
-      await msg.say(`
-      命令提示-全字匹配-
-      github
-      每日简报
-      舔狗（一天100次调用）
-      朋友圈文案
-      毒鸡汤
-      李铁是我儿
-      分手文案
-      `)
-    } else if (content === '群消息过滤') {
-      await delay(200)
-      await msg.say(`-本消息只会在已绑定的群发送-`)
-    } else if (content === '热更新测试') {
-      await delay(200)
-      await msg.say(`success`)
-    } else if (content === '舔狗') {
-      let res = await superagent.getTianDog()
-      await delay(200)
-      await msg.say(res)
-    } else if (content === '朋友圈文案') {
-      let res = await superagent.getpyq()
-      await delay(200)
-      await msg.say(res)
-    } else if (content === 'github') {
-      await delay(200)
-      await msg.say(`
-      机器人地址
-      https://github.com/aote777/wechat-robot-master
-      `)
-    } else if (content === '分手文案') {
-      let res = await superagent.getFenShou()
-      await delay(200)
-      await msg.say(res)
-    } else if (content === '每日简报') {
-      let res = await superagent.getNews()
-      let str = ''
+    const isText = msg.type() === bot.Message.Type.Text
 
-      let newarr = JSON.parse(res)
-      console.log('---', typeof newarr)
-      for (let i = 0; i < newarr.length; i++) {
-        str += newarr[i].title + '<br>' + `        ` + newarr[i].digest + '<br><br>'
+    let idArr = config.ROOMIDARR
+    let allowBool = false
+    for (let i = 0; i < idArr.length; i++) {
+      if (msg.payload.roomId == idArr[i]) {
+        allowBool = true
       }
-      await delay(200)
-      await msg.say(str)
-    } else if (content === '我emo了') {
-      let res = await superagent.getEmo()
-      await delay(200)
-      await msg.say(res)
+    }
+    if (!Boolean(allowBool && isText)) return
+    console.log('\x1B[31m%s\x1B[0m', '这里是新架构测试入口---------')
+    try {
+      let content = msg.text().trim()
+      let result = await msghandle.handle(content)
+
+      console.log('\x1B[31m%s\x1B[0m', '机器人回答', result)
+      if (!result) return
+      if (typeof result == 'string') {
+        // await delay(5000)
+        await msg.say(result)
+      } else if (typeof result == 'number') {
+        msg.say(result)
+      } else if (result instanceof Wechaty.Contact) {
+        msg.say(result)
+      } else if (result instanceof Wechaty.FileBox) {
+        msg.say(result)
+      } else if (result instanceof Wechaty.UrlLink) {
+        msg.say(result)
+      } else if (result instanceof Wechaty.MiniProgram) {
+        msg.say(result)
+      }
+    } catch (error) {
+      console.log('\x1B[31m%s\x1B[0m', 'error', error)
     }
   }
 }
-console.log('onMessage')
+
+console.log('onMessage热更新完毕')
 module.exports = onMessage
