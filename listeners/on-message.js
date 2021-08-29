@@ -46,7 +46,7 @@ async function onMessage(msg) {
       console.log('\x1B[31m%s\x1B[0m', '机器人回答', result)
       if (!result) return
       if (typeof result == 'string') {
-        await delay(100)
+        await delay(150)
         await msg.say(result)
       } else if (typeof result == 'number') {
         msg.say(result)
