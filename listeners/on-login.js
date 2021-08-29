@@ -3,7 +3,6 @@
  */
 const schedule = require('../schedule')
 const config = require('../config')
-const superagent = require('../superagent')
 let roomarr=config.ROOM
 let bot = config.bot
 

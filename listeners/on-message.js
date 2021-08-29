@@ -5,7 +5,6 @@
 const path = require('path')
 const { Wechaty } = require('wechaty')
 const { FileBox } = require('file-box')
-const superagent = require('../superagent')
 const config = require('../config')
 const { msghandle } = require('../lib/botfuntionModules')
 let bot = config.bot
@@ -47,7 +46,7 @@ async function onMessage(msg) {
       console.log('\x1B[31m%s\x1B[0m', '机器人回答', result)
       if (!result) return
       if (typeof result == 'string') {
-        // await delay(5000)
+        await delay(100)
         await msg.say(result)
       } else if (typeof result == 'number') {
         msg.say(result)
