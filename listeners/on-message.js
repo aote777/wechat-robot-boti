@@ -49,15 +49,22 @@ async function onMessage(msg) {
         await delay(150)
         await msg.say(result)
       } else if (typeof result == 'number') {
-        msg.say(result)
+        await delay(150)
+        await msg.say(result)
       } else if (result instanceof Wechaty.Contact) {
-        msg.say(result)
+        await delay(150)
+        await msg.say(result)
       } else if (result instanceof Wechaty.FileBox) {
-        msg.say(result)
+        console.log('\x1B[31m%s\x1B[0m', 
+        '消息类型：FileBox')
+        await delay(150)
+        await msg.say(result)
       } else if (result instanceof Wechaty.UrlLink) {
-        msg.say(result)
+        await delay(150)
+        await msg.say(result)
       } else if (result instanceof Wechaty.MiniProgram) {
-        msg.say(result)
+        await delay(150)
+        await msg.say(result)
       }
     } catch (error) {
       console.log('\x1B[31m%s\x1B[0m', 'error', error)
