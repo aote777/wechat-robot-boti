@@ -41,29 +41,29 @@ async function onMessage(msg) {
     console.log('\x1B[31m%s\x1B[0m', '这里是新架构测试入口---------')
     try {
       let content = msg.text().trim()
-      let result = await msghandle.handle(content)
+      let result = await msghandle.handle(content,msg)
 
       console.log('\x1B[31m%s\x1B[0m', '机器人回答', result)
       if (!result) return
       if (typeof result == 'string') {
-        await delay(150)
+        await delay(200)
         await msg.say(result)
       } else if (typeof result == 'number') {
-        await delay(150)
+        await delay(200)
         await msg.say(result)
       } else if (result instanceof Wechaty.Contact) {
-        await delay(150)
+        await delay(200)
         await msg.say(result)
       } else if (result instanceof Wechaty.FileBox) {
         console.log('\x1B[31m%s\x1B[0m', 
         '消息类型：FileBox')
-        await delay(150)
+        await delay(200)
         await msg.say(result)
       } else if (result instanceof Wechaty.UrlLink) {
-        await delay(150)
+        await delay(200)
         await msg.say(result)
       } else if (result instanceof Wechaty.MiniProgram) {
-        await delay(150)
+        await delay(200)
         await msg.say(result)
       }
     } catch (error) {
