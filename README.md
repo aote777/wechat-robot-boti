@@ -3,7 +3,7 @@
 
 # 保姆级注释，会不会js都没关系，会cv就行
 
-# sdk ==> [wechaty](https://github.com/wechaty/wechaty)
+# sdk ==> **[wechaty](https://github.com/wechaty/wechaty)**
 
 ### 安装依赖
 
@@ -14,6 +14,7 @@
 
 ```bash
 cnpm install 
+or
 npm install
 ```
 
