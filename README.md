@@ -6,9 +6,9 @@
 
 # ~~保姆级注释，会不会js都没关系，会cv就行~~
 
-# ~~sdk ==> **[wechaty](https://github.com/wechaty/wechaty)**
+# ~~sdk ==>~~ **[wechaty](https://github.com/wechaty/wechaty)**
 
-### ~~安装依赖
+### ~~安装依赖~~
 
 ~~依赖中需要安装`chromium`，使用 npm 会下载失败或者很慢，国内嘛你懂得
 如果安装失败了，就直接删除整个node_modules，重新安装，直到成功~~
