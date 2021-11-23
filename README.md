@@ -1,4 +1,4 @@
-# <span style="color:red">wechaty更新的太快啦 ， 很多api都改了 等我有时间会重构项目</span>
+# <span color="red">wechaty更新的太快啦 ， 很多api都改了 等我有时间会重构项目</span>
 
 ## <-重新设计了可扩展式开发框架-> 极大的降低开发难度
 
