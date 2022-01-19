@@ -1,7 +1,7 @@
 {
   "name": "wechat-robot-master",
   "version": "1.0.0",
-  "description": "* 注意",
+  "description": "微信机器人",
   "main": "index.js",
   "type": "module",
   "scripts": {
