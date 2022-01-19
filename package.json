@@ -1,0 +1,22 @@
+{
+  "name": "wechat-robot-master",
+  "version": "1.0.0",
+  "description": "* 注意",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aote777/wechat-robot-master.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aote777/wechat-robot-master/issues"
+  },
+  "homepage": "https://github.com/aote777/wechat-robot-master#readme"
+}
