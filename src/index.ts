@@ -1,0 +1,1 @@
+import { WechatyBuilder } from 'wechaty'
